@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="x-ua-compatible" content="IE=edge">
+ <meta name=”author” content="ke2b, DON'T STARVE TOGETHER">
+ <title>Cart</title>
+  <link rel="stylesheet" href="../css/ProductManagement.css">
+</head> 
+<body>
+    <div class="head">
+        <button onclick="window.location.href='/html/HomePage.html'" class="buttonlogo"><img src="../img/Logo.jpg" alt="logo"></button>
+    </div>
+    <div class="container">
+        <div class="navigation"> 
+            <span>リスト</span>
+            <span><a href="">在庫</a></span>
+            <span><a>お客様の注文</a></span>
+            <hr>
+            <button onclick="window.location.href='/html/HomePage.html'">sign out</button>
+        </div>
+        <div class="body">
+            <h1>商品管理</h1>
+                <button onclick="window.location.href='/html/addproduct.html'" class="buttonAddproduct">商品追加(✙)</button>
+            <div class="Displaypage">
+
+                <table style="border: 1px solid; border-collapse: collapse;">
+
+                    <thead>
+                        <tr>
+                            <th id="code">コード</th>
+                            <th id="img">イメージ</th>
+                            <th id="productname">商品名</th>
+                            <th id="cost">値段</th>
+                            <th id="stockquantity">在庫数</th>
+                            <th id=edit>編集</th>
+                        </tr>
+                    </thead>
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/ProductManagement.js"></script✙
+</body>
+</html>
