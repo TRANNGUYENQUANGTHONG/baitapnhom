@@ -10,7 +10,12 @@
 <body>
     <div class="head">
         <button onclick="window.location.href='/html/HomePage.html'" class="buttonlogo"><img src="../img/Logo.jpg" alt="logo"></button>
+        <div class="search">
+            <span class="icon">🔍</span>
+            <input type="text" placeholder="コード / 商品名で検索" id="search">
+        </div>
     </div>
+
     <div class="container">
         <div class="navigation"> 
             <span>リスト</span>
@@ -31,18 +36,19 @@
                             <th id="code">コード</th>
                             <th id="img">イメージ</th>
                             <th id="productname">商品名</th>
-                            <th id="cost">値段</th>
+                            <th id="cost">値段（円）</th>
                             <th id="stockquantity">在庫数</th>
                             <th id=edit>編集</th>
                         </tr>
                     </thead>
-
+                    <tbody id="productTableBody">
+                        
+                    </tbody>
                 </table>
 
             </div>
         </div>
     </div>
 
-    <script src="../js/ProductManagement.js"></script✙
-</body>
+    <script src="../js/ProductManagement.js"></script>
 </html>
