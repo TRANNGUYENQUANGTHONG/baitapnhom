@@ -110,7 +110,7 @@
     color: #2c3e50;
 }
 
-.body button {
+.buttonAddproduct {
     position: absolute;
     padding: 12px 25px;
     background: #1abc9c;
@@ -133,7 +133,8 @@
 }
 
 .edit-button {
-    padding: 4px 12px;
+    font-size: 18px;
+    padding: 12px 25px;
     background-color: #1abc9c;
     color: #fff;
     border: none;
@@ -148,6 +149,18 @@
 .Displaypage{
     padding-top: 80px;
 }
+
+/*căn giữa tất cả trong bảng*/
+.Displaypage table {
+    margin: 0 auto; /* căn giữa toàn bộ bảng trong trang */
+}
+
+.Displaypage th,
+.Displaypage td {
+    text-align: center;      /* căn giữa chữ */
+    vertical-align: middle;  /* căn giữa theo chiều dọc */
+}
+
 .Displaypage th{
     font-weight: bold;
     font-size: 1.5em;
