@@ -61,7 +61,10 @@ h1 {
     border-radius: 20px;
     cursor: pointer;
     transition: 0.3s;
-    
+    font-size: 3em;
+    text-decoration: none;
+    color: aliceblue;
+    font-family: sans-serif;
 }
 
 /* Hiệu ứng hover cho cả 2 nút */
@@ -71,14 +74,6 @@ h1 {
     transform: scale(1.05);
 }
 
-/* Link bên trong nút */
-.linkC,
-.linkP {
-    font-size: 3em;
-    text-decoration: none;
-    color: aliceblue;
-    font-family: sans-serif;
-}
 .footer{
     text-align: center;
 }
