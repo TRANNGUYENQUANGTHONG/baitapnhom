@@ -1,90 +1,76 @@
-// ==============================
-// 商品リストの取得・保存（共通）
-// ==============================
+
+
+// Lấy và lưu danh sách sản phẩm 
 function getProducts() {
-    return JSON.parse(localStorage.getItem("products") || "[]");
+  return JSON.parse(localStorage.getItem("products") || "[]");
 }
 
 function saveProducts(products) {
-    localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem("products", JSON.stringify(products));
 }
 
-// ==============================
-// 商品一覧をテーブルに表示（innerHTML 方式）
-// ==============================
+// Hiển thị danh sách sản phẩm vào bảng (dùng innerHTML)
 function renderProducts(filterText = "") {
-    const tbody = document.getElementById("productTableBody");
-    if (!tbody) return;
+  const tbody = document.getElementById("productTableBody");
+  if (!tbody) return;
 
-    const products = getProducts();
-    const keyword = filterText.trim().toLowerCase();
+  const products = getProducts();
+  const keyword = filterText.trim().toLowerCase();
 
-    let rowsHtml = "";
+  let rowsHtml = "";
 
-    products.forEach((p, index) => {
-        const code  = (p.code  || "").toLowerCase();
-        const name  = (p.name  || "").toLowerCase();
+  products.forEach((p, index) => {
+    const code = (p.code || "").toLowerCase();
+    const name = (p.name || "").toLowerCase();
 
-        // 検索フィルター（コード or 商品名）
-        if (keyword && !code.includes(keyword) && !name.includes(keyword)) {
-            return; // この商品は表示しない
-        }
-
-        const imgHtml = p.img
-            ? `<img src="${p.img}" class="product-img" alt="${p.name || ""}">`
-            : "なし";
-
-        rowsHtml += `
-            <tr>
-                <td>${p.code || ""}</td>
-                <td>${imgHtml}</td>
-                <td>${p.name || ""}</td>
-                <td>${p.price || ""}</td>
-                <td>${p.stock || ""}</td>
-               <td>
-        <button class="edit-button" onclick="editProduct(${index})">
-          編集
-        </button>
-      </td>
-        `;
-    });
-
-    if (!rowsHtml) {
-        rowsHtml = `
-            <tr>
-                <td colspan="6" style="text-align:center;">
-                    登録された商品がありません。
-                </td>
-            </tr>
-        `;
+    // Bộ lọc tìm kiếm 
+    if (keyword && !code.includes(keyword) && !name.includes(keyword)) {
+      return; // Không hiển thị sản phẩm này
     }
 
-    tbody.innerHTML = rowsHtml;
+    // Nếu có ảnh thì hiển thị, không có thì ghi "なし"
+    const imgHtml = p.img
+      ? `<img src="${p.img}" class="product-img" alt="${p.name || ""}">`
+      : "なし";
+
+    // thêm các phần tử trong local stogare vào bảng
+    rowsHtml += `
+      <tr>
+        <td>${p.code || ""}</td>
+        <td>${imgHtml}</td>
+        <td>${p.name || ""}</td>
+        <td>${p.price || ""}</td>
+        <td>${p.stock || ""}</td>
+        <td>
+          <button class="edit-button" onclick="editProduct(${index})">
+            編集
+          </button>
+        </td>
+      </tr>
+    `;
+  });
+
+  tbody.innerHTML = rowsHtml;
 }
 
-// ==============================
-// 編集ボタン → addproduct.html?index=… に遷移
-// ==============================
+// Nút chỉnh sửa → chuyển sang Addproduct.html với index tương ứng
 function editProduct(index) {
-    window.location.href = `/html/addproduct.html?index=${index}`;
+  window.location.href = `./Addproduct.html?index=${index}`;
 }
 
-// ==============================
-// 検索ボックスの設定
-// ==============================
+// Cài đặt chức năng cho ô tìm kiếm
 function setupSearch() {
-    const searchInput = document.getElementById("search");
-    if (!searchInput) return;
+  const searchInput = document.getElementById("search");
+  if (!searchInput) return;
 
-    searchInput.addEventListener("input", function () {
-        renderProducts(this.value);
-    });
+  searchInput.addEventListener("input", function () {
+    renderProducts(this.value); 
+  });
 }
 
-// ==============================
-// ページ読み込み時の初期化
-// ==============================
+// Khởi tạo khi trang được load xong
 document.addEventListener("DOMContentLoaded", () => {
-    renderProducts();  // 初回表示
-    setupSearch();     // 検索設定
+  insertDefaultToLocalStorage(); 
+  renderProducts();
+  setupSearch();
 });
