@@ -4,8 +4,8 @@
  <meta charset="UTF-8">
  <meta http-equiv="x-ua-compatible" content="IE=edge">
  <meta name=”author” content="ke2b, DON'T STARVE TOGETHER">
- <title>Cart</title>
-  <link rel="stylesheet" href="../css/ProductManagement.css">
+ <title>ProductDetail</title>
+  <link rel="stylesheet" href="../css/ProductDetails.css">
 </head> 
 <body>
     <div class="head">
@@ -18,25 +18,24 @@
 
     <div class="container">
         <div class="navigation"> 
-            <span>リスト</span>
-            <span><a href="/html/ProductDetails.html">商品の詳細情報</a></span>
+            <span><a href="/html/ProductManagement.html">リスト</a></span>
+            <span>商品の詳細情報</span>
             <span><a　href="">お客様の注文</a></span>
             <hr>
             <button onclick="window.location.href='/html/HomePage.html'">sign out</button>
         </div>
         <div class="body">
-            <h1>商品管理</h1>
-                <button onclick="window.location.href='/html/Addproduct.html'" class="buttonAddproduct">商品追加(✙)</button>
+            <h1>商品の詳細情報</h1>
             <div class="Displaypage">
 
                 <table style="border: 1px solid; border-collapse: collapse;">
                     <thead>
                         <tr>
-                            <th id="code">コード</th>
-                            <th id="img">イメージ</th>
                             <th id="productname">商品名</th>
-                            <th id="cost">値段（円）</th>
+                            <th id="img">イメージ</th>
+                            <th id="information">情報</th>
                             <th id="stockquantity">在庫数</th>
+                            <th id="status">状態</th>
                             <th id=edit>編集</th>
                         </tr>
                     </thead>
@@ -48,7 +47,8 @@
             </div>
         </div>
     </div>
-    <script src="../js/DefaultProducts.js"></script>
-    <script src="../js/ProductManagement.js"></script>
+    <script src="../js/defaultProducts.js"></script>
+    <script src="../js/ProductDetails.js"></script>
+</html>
 </body>
 </html>
