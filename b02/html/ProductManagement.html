@@ -9,7 +9,7 @@
 </head> 
 <body>
     <div class="head">
-        <button onclick="window.location.href='/html/HomePage.html'" class="buttonlogo"><img src="../img/Logo.jpg" alt="logo"></button>
+        <button class="buttonlogo"><img src="../img/Logo.jpg" alt="logo"></button>
         <div class="search">
             <span class="icon">🔍</span>
             <input type="text" placeholder="コード / 商品名で検索" id="search">
@@ -20,7 +20,8 @@
         <div class="navigation"> 
             <span>リスト</span>
             <span><a href="/html/ProductDetails.html">商品の詳細情報</a></span>
-            <span><a　href="">お客様の注文</a></span>
+            <span><a href="/html/ProductStatus.html">在庫確認</a></span>
+            <span><a>購入歴史</a></span>
             <hr>
             <button onclick="window.location.href='/html/HomePage.html'">sign out</button>
         </div>
@@ -36,7 +37,6 @@
                             <th id="img">イメージ</th>
                             <th id="productname">商品名</th>
                             <th id="cost">値段（円）</th>
-                            <th id="stockquantity">在庫数</th>
                             <th id=edit>編集</th>
                         </tr>
                     </thead>

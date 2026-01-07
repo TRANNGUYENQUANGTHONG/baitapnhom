@@ -61,7 +61,6 @@ function renderProducts(filterText = "") {
         <td>${imgHtml}</td>
         <td>${p.name || ""}</td>
         <td>${p.price || ""}</td>
-        <td>${p.stock || ""}</td>
         <td>${editButtonHtml}</td>
       </tr>
     `;

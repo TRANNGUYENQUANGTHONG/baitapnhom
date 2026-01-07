@@ -1,12 +1,148 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
- <meta charset="UTF-8">
- <meta http-equiv="x-ua-compatible" content="IE=edge">
- <meta name=”author” content="ke2b, DON'T STARVE TOGETHER">
- <title>Cart</title>
-</head> 
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="author" content="ke2b, DON'T STARVE TOGETHER" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart</title>
+
+  <link rel="stylesheet" href="../css/Cart.css">
+</head>
 <body>
-    
+<a href="productinfomation.html" class="view-cart-btn">次へ</a>
+
+  <!-- Giỏ hàng ở góc -->
+  <div class="cart-bar" onclick="goToCart()">
+    🛒 Cart: <span id="cartCount">0</span>
+  </div>
+
+  <!-- Header + Search bar -->
+<div class="header-container">
+  
+  <!-- Logo + Title -->
+  <div class="site-header">
+    <img src="../img/Logo.jpg" alt="DST Logo" class="logo">
+    <span>DON'T STARVE TOGETHER</span>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" placeholder="検索…" id="searchInput">
+    <button onclick="searchProduct()">検索</button>
+  </div>
+
+</div>
+
+  <div class="product-list">
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 1</h3>
+      <p>¥1,000</p>
+ 
+      <diđill; class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 2</h3>
+      <p>¥2,000</p>
+ 
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 3</h3>
+      <p>¥3,000</p>
+
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 4</h3>
+      <p>¥3,000</p>
+ 
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 5</h3>
+      <p>¥3,000</p>
+
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 6</h3>
+      <p>¥3,000</p>
+
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+
+    <div class="product">
+      <img src="https://via.placeholder.com/200" />
+      <h3>Product Name 7</h3>
+      <p>¥3,000</p>
+
+      <div class="button-row">
+  <button class="delete-btn" onclick="deleteProduct(this)">🗑</button>
+  <button onclick="addToCart()">Add to Cart</button>
+</div>
+
+    </div>
+  </div>
+  <!-- Phân trang -->
+<div class="pagination">
+  <a href="cart.html" class="active">1</a>
+  <a href="page2.html">2</a>
+  <a href="page3.html">3</a>
+</div>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart() {
+      cartCount++;
+      document.getElementById("cartCount").innerText = cartCount;
+    }
+
+    function goToCart() {
+      window.location.href = "ProductManagenment.html"; // đổi sang trang bạn muốn
+    }
+   function removeFromCart() {
+  if (cartCount > 0) {
+    cartCount--;
+    document.getElementById("cartCount").innerText = cartCount;
+  }
+}
+  </script>
 </body>
 </html>
