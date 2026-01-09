@@ -1,0 +1,79 @@
+プロジェクト提案書：食品・日用品販売システム (Survival Market)
+1. コンセプト (Concept)
+目的: 誰でも簡単に利用できる、食品と生活必需品のオンライン販売プラットフォームを構築すること。
+
+ターゲット: 専門的な知識がなくても、直感的に操作して買い物ができるすべてのユーザー。
+
+デザイン: ゲーム「Don't Starve Together」の世界観を取り入れつつ、実用的なECサイトとしての利便性を追求。
+
+2. システムの特徴とセキュリティ (Security & Administration)
+独占的な管理者アカウント: セキュリティを確保するため、出品者（管理者）アカウントは1つのみに制限されています。
+
+アカウント管理: 管理者登録機能はサイト上には存在せず、アカウントの追加や変更はソースコードの直接修正のみで可能です。これにより、外部からの不正アクセスを完全に防ぎます。
+
+ユーザー登録: 購入者向けには、アカウント作成（Signup）とログイン（Signin）ページを用意し、個別の買い物体験を提供します。
+
+3. 出品者（管理者）向け機能 (Seller Features)
+商品登録・編集: 商品の名前、画像、価格、説明文を自由に変更でき、内容を最終確認した上で出品することが可能です。
+
+高度な検索機能: 商品を**「ID（コード）」または「名前」**で瞬時に検索でき、管理時間を大幅に短縮します。
+
+在庫管理機能: 商品IDごとに在庫数とステータス（在庫あり・残りわずかなど）をリアルタイムで把握できます。
+
+4. 購入者向け機能と決済フロー (Buyer Features & Checkout)
+ショッピング機能: 商品をカート（Cart）に入れ、購入手続きを行うことができます。
+
+決済と履歴の同期:
+
+将来的な拡張として決済ページを実装。
+
+「決済」ボタンを押すと、そのデータが即座に購入者と出品者双方の**「購入履歴ページ」**に反映される仕組み。
+
+5. 主な取り扱い商品 (Product Categories)
+食品: 和牛ステーキ、サーモン寿司セット、唐揚げ弁当などの高品質な食品。
+
+日用品: 生活に欠かせない必需品全般。
+
+
+
+
+
+TỔNG QUAN DỰ ÁN: SIÊU THỊ THỰC PHẨM & NHU YẾU PHẨM (SURVIVAL MARKET)
+1. Ý tưởng cốt lõi (Concept)
+Mục tiêu: Xây dựng một trang web thương mại điện tử bán thực phẩm cao cấp (Wagyu, Sushi, Bento) và nhu yếu phẩm thiết yếu.
+
+Đối tượng: Mọi người dùng đều có thể sử dụng dễ dàng nhờ giao diện trực quan, đơn giản.
+
+Phong cách: Lấy cảm hứng từ không gian sinh tồn của game "Don't Starve Together" nhưng phục vụ mục đích kinh doanh thực tế.
+
+2. Hệ thống Tài khoản & Bảo mật (Security)
+Người bán (Admin): * Chỉ có một tài khoản duy nhất được thiết lập sẵn trong mã nguồn.
+
+Không thể đăng ký tài khoản admin thứ hai trực tiếp trên web; việc thay đổi phải thực hiện qua Source Code để đảm bảo an toàn tuyệt đối.
+
+Người mua (User): * Có trang đăng ký (UserSignup.html) và đăng nhập (UserSignin.html) riêng để mua hàng bằng tài khoản cá nhân.
+
+3. Chức năng dành cho Người bán (Seller Features)
+Quản lý nội dung: Tùy ý chỉnh sửa tên, hình ảnh, giá cả và mô tả hàng hóa trước khi đăng bán.
+
+Xác nhận hàng hóa: Có quy trình kiểm tra và xác nhận nội dung hàng hóa trước khi công khai lên trang web.
+
+Tìm kiếm thông minh: Tìm sản phẩm nhanh chóng bằng ID (Mã sản phẩm) hoặc Tên để tiết kiệm thời gian quản lý.
+
+Kiểm soát kho hàng: Theo dõi số lượng tồn kho và trạng thái (còn hàng/hết hàng) theo thời gian thực.
+
+4. Chức năng dành cho Người mua (Buyer Features)
+Mua sắm dễ dàng: Chọn hàng hóa vào giỏ hàng (Cart.html) và tìm kiếm sản phẩm mong muốn qua thanh tìm kiếm tiện lợi.
+
+Thanh toán & Lịch sử: * Có trang thanh toán để xác nhận đơn hàng.
+
+Sau khi ấn "Thanh toán", dữ liệu sẽ tự động chuyển vào trang Lịch sử mua hàng của cả người dùng (để theo dõi) và người bán (để chuẩn bị hàng).
+
+5. Danh mục Sản phẩm tiêu biểu
+Dựa trên mã nguồn hiện có, các sản phẩm bao gồm:
+
+Thực phẩm cao cấp: Bít tết Wagyu (A001), Sushi cá hồi (A003).
+
+Thực phẩm tiện lợi: Cơm hộp Gà rán (A002).
+
+Nhu yếu phẩm: Các mặt hàng thiết yếu khác được đăng tải thêm qua trang quản trị.
