@@ -1,0 +1,137 @@
+body {
+  background-image: url("../img/backround.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+}
+
+/* Khung chính */
+.payment-box {
+    width: 380px;
+    padding: 30px;
+    margin: 80px auto;
+    border-radius: 20px;
+    background: rgb(247, 243, 243);
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.glass {
+    background: rgba(255, 255, 255, 0.712);
+    backdrop-filter: blur(15px);
+}
+
+/* Tiêu đề */
+.title {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.sub-title {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #444;
+}
+
+/* Nút thanh toán */
+.pay-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: 0.25s;
+    min-height: 58px;
+}
+
+.pay-btn .logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Hover */
+.pay-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Màu từng nút */
+.CHUNGPAY {
+    background: #ff3142;
+    color: white;
+}
+
+.NHANPAY {
+    background: #4d6694;
+    color: white;
+}
+
+.HUNGカード {
+    background: #695c5c;
+    color: white;
+}
+
+.NGHIAクレジット {
+    background: #3086ff;
+    color: white;
+}
+
+.THONG現金 {
+    background: #2e8b57;
+    color: white;
+}
+
+/* =================== POPUP =================== */
+.popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.hidden {
+    display: none;
+}
+
+.popup-box {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-box img {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
