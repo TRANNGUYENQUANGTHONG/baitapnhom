@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>商品追加（編集）</title>
+    <link rel="stylesheet" href="../css/Addproduct.css">
+    <script src="../js/Addproduct.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>商品追加 / 編集</h1>
+
+        <form id="productForm">
+            <div class="form-row">
+                <label for="codeInput">コード</label>
+                <input type="text" id="codeInput" required>
+                <div id="codeError" class="error"></div>
+            </div>
+
+            <div class="form-row">
+                <label for="nameInput">商品名</label>
+                <input type="text" id="nameInput" required>
+                <div id="nameError" class="error"></div>
+            </div>
+
+            <div class="form-row">
+                <label for="priceInput">値段</label>
+                <input type="number" id="priceInput" required>
+                <div id="priceError" class="error"></div>
+            </div>
+
+            <div class="form-row">
+                <label for="stockInput">在庫数</label>
+                <input type="number" id="stockInput" required>
+                <div id="stockError" class="error"></div>
+            </div>
+
+            <div class="form-row">
+                <label for="imageInput">イメージ</label>
+                <input type="file" id="imageInput" accept="image/*">
+                <img id="preview" alt="プレビュー" style="max-width: 200px; display: block; margin-top: 8px;">
+                <div id="imgError" class="error"></div>
+            </div>
+            <div class="form-buttons">
+                <button type="submit">保存</button>
+                <button type="button" onclick="window.location.href='ProductManagement.html'">戻る</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

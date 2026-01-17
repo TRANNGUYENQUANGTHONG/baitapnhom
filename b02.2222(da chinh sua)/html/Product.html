@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  <meta name="author" content="ke2b, DON'T STARVE TOGETHER" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product</title>
+
+  <link rel="stylesheet" href="../css/Product.css">
+</head>
+<body>
+
+  <!-- Nếu "次へ" là sang trang giỏ/checkout thì đổi link phù hợp -->
+  <a href="cart.html" class="view-cart-btn">カート</a>
+
+  <!-- Giỏ hàng ở góc -->
+  <div class="cart-bar" onclick="goToCart()">
+    🛒 Cart: <span id="cartCount">0</span>
+  </div>
+
+  <!-- Header + Search bar -->
+  <div class="header-container">
+    <div class="site-header">
+      <img src="../img/Logo.jpg" alt="DST Logo" class="logo">
+      <span>DON'T STARVE TOGETHER</span>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="検索…" id="searchInput">
+      <button onclick="searchProduct()">検索</button>
+    </div>
+  </div>
+
+  <!-- ✅ Render sản phẩm từ localStorage -->
+  <div class="product-list" id="productList"></div>
+
+  <!-- Phân trang (nếu bạn muốn giữ) -->
+  <div class="pagination">
+    <a href="product.html" class="active">1</a>
+    <a href="page2.html">2</a>
+    <a href="page3.html">3</a>
+  </div>
+
+  <!-- ✅ Quan trọng: để lấy DEFAULT_PRODUCTS -->
+  <script src="../js/DefaultProducts.js"></script>
+  <script src="../js/Product.js"></script>
+</body>
+</html>

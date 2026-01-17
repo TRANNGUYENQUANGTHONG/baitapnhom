@@ -1,0 +1,79 @@
+/* Background */
+.body {
+    background-image: url(../img/homepagebackground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; 
+
+}
+
+/* Tiêu đề */
+h1 {
+        text-align: center;
+    color: #000;
+    margin-top: 30px;
+    font-family: sans-serif;
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-size: 2.8em;
+
+    padding: 25px 60px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 5px solid #000;
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 20px rgba(0,0,0,0.6),
+        0 0 10px rgba(0,0,0,0.9) inset;
+}
+.logo{
+    display: block;               /* cho phép margin auto */
+    margin: 40px auto 0 auto;     /* căn giữa */                /* chỉnh kích thước */
+    height: auto;
+    width:500px; 
+}
+
+/* --- Container để 2 nút nằm ngang --- */
+.container{
+
+    display: flex;
+    justify-content: center;     /* căn giữa ngang */
+    gap: 90px;                   /* khoảng cách giữa 2 nút */
+    margin-top: 50px;
+}
+
+/* Nút lớn */
+.buttonC, .buttonP {
+
+    font-weight: bold;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: rgba(20, 177, 2, 0.6);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 3em;
+    text-decoration: none;
+    color: aliceblue;
+    font-family: sans-serif;
+}
+
+/* Hiệu ứng hover cho cả 2 nút */
+.buttonC:hover,
+.buttonP:hover {
+    background-color: rgba(191, 36, 36, 0.9);
+    transform: scale(1.05);
+}
+
+.footer{
+    text-align: center;
+}

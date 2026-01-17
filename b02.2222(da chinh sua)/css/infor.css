@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  background: url("../img/back.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Thu nhỏ ~30% */
+.detail-container {
+  width: 350px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.95);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.detail-container img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+#productName {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+#productPrice {
+  font-size: 18px;
+  color: #e67e22;
+  margin: 8px 0;
+}
+
+.info-box {
+  margin-top: 15px;
+  padding: 12px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.add-cart {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  background: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.checkout {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.back {
+  margin-top: 15px;
+  padding: 8px 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="x-ua-compatible" content="IE=edge">
+ <meta name=”author” content="ke2b, DON'T STARVE TOGETHER">
+ <title>ProductDetail</title>
+  <link rel="stylesheet" href="../css/ProductDetails.css">
+</head> 
+<body>
+    <div class="head">
+        <button onclick="window.location.href='/html/ProductManagement.html'" class="buttonlogo"><img src="../img/Logo.jpg" alt="logo"></button>
+        <div class="search">
+            <span class="icon">🔍</span>
+            <input type="text" placeholder="コード / 商品名で検索" id="search">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="navigation"> 
+            <span><a href="/html/ProductManagement.html">リスト</a></span>
+            <span>商品の詳細情報</span>
+            <span><a href="/html/ProductStatus.html">在庫確認</a></span>
+            <span><a>購入歴史</a></span>
+            <hr>
+            <button onclick="window.location.href='/html/HomePage.html'">sign out</button>
+        </div>
+        <div class="body">
+            <h1>商品の詳細情報</h1>
+            <div class="Displaypage">
+
+                <table style="border: 1px solid; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th id="productname">商品名</th>
+                            <th id="img">イメージ</th>
+                            <th id="information">情報</th>
+                            <th id="stockquantity">在庫数</th>
+                            <th id="status">状態</th>
+                            <th id=edit>編集</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTableBody">
+                        
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/defaultProducts.js"></script>
+    <script src="../js/ProductDetails.js"></script>
+</html>
+</body>
+</html>
