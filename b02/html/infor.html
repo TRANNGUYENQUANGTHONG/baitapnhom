@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>商品詳細</title>
+  <link rel="stylesheet" href="../css/infor.css">
+</head>
+<body>
+
+<div class="detail-container">
+  <img id="productImg" src="" alt="product">
+
+  <h1 id="productName"></h1>
+  <p id="productPrice"></p>
+
+  <div class="info-box">
+    <h3>商品情報</h3>
+    <p id="productInfo"></p>
+  </div>
+
+  <div class="btn-row">
+    <button class="add-cart" onclick="addToCartFromInfo()">Add Cart</button>
+    <button class="checkout" onclick="goToCart()">会計</button>
+  </div>
+  <button class="back" onclick="window.location.href='product.html'">← 戻る</button>
+</div>
+
+<script src="../js/infor.js"></script>
+</body>
+</html>

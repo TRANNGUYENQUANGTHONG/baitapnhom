@@ -1,23 +1,27 @@
-// Lấy danh sách sản phẩm user đã lưu
+// ================== CONSTANT ==================
+const ITEMS_PER_PAGE = 7;
+let currentPage = 1;
+
+// ================== USER PRODUCTS ==================
 function getUserProducts() {
   return JSON.parse(localStorage.getItem("products") || "[]");
 }
 
-// Lấy default đã sửa (nếu có) hoặc default gốc
+// ================== DEFAULT PRODUCTS ==================
 function getDefaultProducts() {
   const saved = localStorage.getItem("default_products");
   if (saved) {
     try { return JSON.parse(saved); } catch (e) {}
   }
-  return DEFAULT_PRODUCTS;
+  return typeof DEFAULT_PRODUCTS !== "undefined" ? DEFAULT_PRODUCTS : [];
 }
 
-// Ghép default + user
+// ================== ALL PRODUCTS ==================
 function getAllProducts() {
   return [...getDefaultProducts(), ...getUserProducts()];
 }
 
-// Tạo trạng thái từ stock
+// ================== STATUS ==================
 function getStatusHtml(stockValue) {
   const stockNum = Number(stockValue);
 
@@ -30,26 +34,32 @@ function getStatusHtml(stockValue) {
   return `<span style="color:green;">在庫あり</span>`;
 }
 
-// Hiển thị bảng 在庫
+// ================== RENDER ==================
 function renderStock(filterText = "") {
   const tbody = document.getElementById("stockTableBody");
   if (!tbody) return;
 
   const defaultProducts = getDefaultProducts();
   const userProducts = getUserProducts();
-  const products = [...defaultProducts, ...userProducts];
+  const allProducts = [...defaultProducts, ...userProducts];
+
   const keyword = filterText.trim().toLowerCase();
+
+  // 🔍 search
+  const filtered = allProducts.filter(p => {
+    const name = (p.name || "").toLowerCase();
+    const code = (p.code || "").toLowerCase();
+    return !keyword || name.includes(keyword) || code.includes(keyword);
+  });
+
+  // 📄 pagination
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const pageItems = filtered.slice(start, start + ITEMS_PER_PAGE);
 
   let html = "";
 
-  products.forEach((p, index) => {
-    const name = (p.name || "").toLowerCase();
-    const code = (p.code || "").toLowerCase();
-
-    // 検索フィルター
-    if (keyword && !name.includes(keyword) && !code.includes(keyword)) return;
-
-    const isDefault = index < defaultProducts.length;
+  pageItems.forEach(p => {
+    const isDefault = defaultProducts.some(d => d.code === p.code);
 
     html += `
       <tr>
@@ -59,7 +69,7 @@ function renderStock(filterText = "") {
         <td>${getStatusHtml(p.stock)}</td>
         <td>
           <button class="edit-button"
-            onclick="editStock(${isDefault}, ${isDefault ? index : index - defaultProducts.length})">
+            onclick="editStockByCode('${p.code}')">
             在庫編集
           </button>
         </td>
@@ -70,33 +80,91 @@ function renderStock(filterText = "") {
   if (!html) {
     html = `
       <tr>
-        <td colspan="5" style="text-align:center;">登録された商品がありません。</td>
+        <td colspan="5" style="text-align:center;">
+          登録された商品がありません。
+        </td>
       </tr>
     `;
   }
 
   tbody.innerHTML = html;
+  renderPagination(filtered.length, filterText);
 }
 
-// ================= 在庫編集 =================
-function editStock(isDefault, index) {
-  let products;
+// ================== PAGINATION ==================
+function renderPagination(totalItems, filterText) {
+  const pagination = document.getElementById("pagination");
+  if (!pagination) return;
 
-  if (isDefault) {
-    products = getDefaultProducts();
-  } else {
-    products = getUserProducts();
+  pagination.innerHTML = "";
+
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  if (totalPages <= 1) return;
+
+  // Prev
+  if (currentPage > 1) {
+    const prev = document.createElement("button");
+    prev.textContent = "«";
+    prev.className = "page-btn";
+    prev.onclick = () => {
+      currentPage--;
+      renderStock(filterText);
+    };
+    pagination.appendChild(prev);
   }
 
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = "page-btn";
+
+    if (i === currentPage) {
+      btn.classList.add("active");
+      btn.disabled = true;
+    }
+
+    btn.onclick = () => {
+      currentPage = i;
+      renderStock(filterText);
+    };
+
+    pagination.appendChild(btn);
+  }
+
+  // Next
+  if (currentPage < totalPages) {
+    const next = document.createElement("button");
+    next.textContent = "»";
+    next.className = "page-btn";
+    next.onclick = () => {
+      currentPage++;
+      renderStock(filterText);
+    };
+    pagination.appendChild(next);
+  }
+}
+
+// ================== 在庫編集 ==================
+function editStockByCode(code) {
+  let products = getDefaultProducts();
+  let isDefault = true;
+
+  let index = products.findIndex(p => p.code === code);
+  if (index === -1) {
+    products = getUserProducts();
+    isDefault = false;
+    index = products.findIndex(p => p.code === code);
+  }
+  if (index === -1) return;
+
   const p = products[index];
-  if (!p) return;
 
   const input = prompt(
     `商品名：${p.name}\n在庫数を入力してください（0以上）`,
     p.stock ?? "0"
   );
 
-  if (input === null) return; // cancel
+  if (input === null) return;
 
   const stockNum = Number(input);
   if (!Number.isInteger(stockNum) || stockNum < 0) {
@@ -106,7 +174,6 @@ function editStock(isDefault, index) {
 
   products[index].stock = String(stockNum);
 
-  // 保存
   if (isDefault) {
     localStorage.setItem("default_products", JSON.stringify(products));
   } else {
@@ -116,17 +183,18 @@ function editStock(isDefault, index) {
   renderStock();
 }
 
-// Search
+// ================== SEARCH ==================
 function setupSearch() {
   const searchInput = document.getElementById("search");
   if (!searchInput) return;
 
   searchInput.addEventListener("input", function () {
+    currentPage = 1;
     renderStock(this.value);
   });
 }
 
-// Init
+// ================== INIT ==================
 document.addEventListener("DOMContentLoaded", () => {
   renderStock();
   setupSearch();

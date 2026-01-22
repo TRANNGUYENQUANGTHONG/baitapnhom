@@ -146,6 +146,10 @@
       opacity: 0.8;
     }
 .view-cart-btn {
+  text-align: center;
+
+  width: 150px;
+  height: 50px;
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -154,7 +158,7 @@
   padding: 15px 25px;
   border-radius: 10px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 2em;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }

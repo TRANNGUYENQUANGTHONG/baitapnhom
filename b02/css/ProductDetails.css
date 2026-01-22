@@ -147,7 +147,7 @@
 }
 
 .Displaypage{
-    padding-top: 80px;
+    padding-top: 50px;
 }
 
 /*căn giữa tất cả trong bảng*/
@@ -191,4 +191,35 @@
 }
 #edit{
     width: 200px;
+}
+/* ===== Pagination ===== */
+.pagination {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  margin: 0 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+}
+
+.pagination button:disabled {
+  background-color: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+  cursor: default;
+  font-weight: bold;
 }

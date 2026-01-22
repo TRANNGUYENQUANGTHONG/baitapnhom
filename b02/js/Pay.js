@@ -2,8 +2,11 @@
 
 const CART_KEY = "dst_cart_v1";
 const ORDER_KEY = "dst_orders_v1";
-const HOME_URL = "Product.html"; // ✅ trang chủ (đổi nếu bạn dùng tên khác)
+const HOME_URL = "Product.html"; // trang chủ
 
+/* ======================
+   CART & ORDER
+====================== */
 function loadCart() {
   try {
     const raw = localStorage.getItem(CART_KEY);
@@ -42,6 +45,9 @@ function saveOrders(orders) {
   localStorage.setItem(ORDER_KEY, JSON.stringify(orders));
 }
 
+/* ======================
+   THANK YOU POPUP
+====================== */
 function openPopup(imgSrc, message) {
   const popup = document.getElementById("thankyou-popup");
   const img = document.getElementById("thankyou-img");
@@ -59,9 +65,12 @@ function openPopup(imgSrc, message) {
 function closePopup() {
   const popup = document.getElementById("thankyou-popup");
   if (popup) popup.classList.add("hidden");
+  window.location.href = HOME_URL;
 }
 
-// map method -> image
+/* ======================
+   PAYMENT META
+====================== */
 function getPayMeta(method) {
   const map = {
     "CHUNGPAY": { img: "/b02/img/pay1.jpg", label: "CHUNGPAY" },
@@ -72,22 +81,46 @@ function getPayMeta(method) {
   };
   return map[method] || { img: "", label: method };
 }
-
-// ✅ HTML onclick="pay('...')"
-function pay(method) {
+/* ======================
+   PAYMENT + CONFIRM
+====================== */
+let selectedMethod = "";
+function payConfirm(method) {
   const cart = loadCart();
 
+  // cart rỗng
   if (!cart.length) {
     openPopup("", "カートが空です。先に商品を追加してください。");
-    // 2秒 후 홈으로
-    setTimeout(() => (window.location.href = HOME_URL), 2000);
     return;
   }
+  selectedMethod = method;
 
   const total = calcTotal(cart);
   const meta = getPayMeta(method);
 
-  // lưu order (optional)
+  // hiển thị nội dung xác nhận
+  const text = document.getElementById("confirm-text");
+  if (text) {
+    text.textContent =
+      `以下の内容でお支払いしますか？\n\n` +
+      `支払い方法：${meta.label}\n` +
+      `合計金額：${formatYen(total)}`;
+  }
+
+  // mở popup xác nhận
+  document.getElementById("confirm-popup").classList.remove("hidden");
+}
+
+function confirmPay() {
+  document.getElementById("confirm-popup").classList.add("hidden");
+
+  const cart = loadCart();
+  if (!cart.length) return;
+
+  const total = calcTotal(cart);
+  const meta = getPayMeta(selectedMethod);
+
+  // lưu order
   const orders = loadOrders();
   orders.push({
     id: Date.now(),
@@ -100,24 +133,12 @@ function pay(method) {
 
   // clear cart
   saveCart([]);
-
-  // ✅ hiện "ありがとうございます" và về trang chủ
+  // popup cảm ơn
   openPopup(
     meta.img,
-    `ありがとうございます。\nお支払いが完了しました。\n合計：${formatYen(total)}`
+    `ありがとうございます。\nお支払いが完了しました。`
   );
-
-  // 2.5 giây sau tự về trang chủ
-  setTimeout(() => {
-    window.location.href = HOME_URL;
-  }, 2500);
 }
-
-// expose
-window.pay = pay;
-window.closePopup = closePopup;
-
-// ESC đóng popup (optional)
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closePopup();
-});
+function closeConfirm() {
+  document.getElementById("confirm-popup").classList.add("hidden");
+}

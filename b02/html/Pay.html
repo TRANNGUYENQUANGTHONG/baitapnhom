@@ -9,43 +9,66 @@
 
 <body>
 
-    <div class="payment-box glass">
-        <h1 class="title">💳 お支払い方法</h1>
-        <p class="sub-title">ご希望のお支払い方法を選択してください</p>
+<!-- nút quay lại -->
+<button class="Back" onclick="window.location.href='Cart.html'">戻る</button>
 
-        <button class="pay-btn CHUNGPAY" onclick="pay('CHUNGPAY')">
-            <img src="/b02/img/pay1.jpg" class="logo">
-            CHUNGPAY で支払う
-        </button>
+<div class="payment-box glass">
+    <h1 class="title">💳 お支払い方法</h1>
+    <p class="sub-title">ご希望のお支払い方法を選択してください</p>
 
-        <button class="pay-btn NHANPAY" onclick="pay('NHANPAY')">
-            <img src="/b02/img/pay2.jpg" class="logo">
-            NHANPAY で支払う
-        </button>
+    <!-- 🔴 đổi pay → payConfirm -->
+    <button class="pay-btn CHUNGPAY" onclick="payConfirm('CHUNGPAY')">
+        <img src="../img/Pay1.jpg" class="logo">
+        CHUNGPAY で支払う
+    </button>
 
-        <button class="pay-btn HUNGカード" onclick="pay('HUNGカード')">
-            <img src="/b02/img/pay3.jpg" class="logo">
-            HUNGカード で支払う
-        </button>
+    <button class="pay-btn NHANPAY" onclick="payConfirm('NHANPAY')">
+        <img src="../img/Pay4.jpg" class="logo">
+        NHANPAY で支払う
+    </button>
 
-        <button class="pay-btn NGHIAクレジット" onclick="pay('NGHIAクレジット')">
-            <img src="/b02/img/pay4.jpg" class="logo">
-            NGHIAクレジット で支払う
-        </button>
+    <button class="pay-btn HUNGカード" onclick="payConfirm('HUNGカード')">
+        <img src="../img/Pay3.jpg" class="logo">
+        HUNGカード で支払う
+    </button>
 
-        <button class="pay-btn THONG現金" onclick="pay('THONG現金')">
-            <img src="/b02/img/pay5.jpg" class="logo">
-            THONG現金 で支払う
-        </button>
+    <button class="pay-btn NGHIAクレジット" onclick="payConfirm('NGHIAクレジット')">
+        <img src="../img/Pay2.jpg" class="logo">
+        NGHIAクレジット で支払う
+    </button>
 
-    </div>
-    <div id="thankyou-popup" class="popup hidden">
-        <div class="popup-box">
-            <img id="thankyou-img" src="" alt="">
-            <p id="thankyou-text"></p>
-            <button class="close-btn" onclick="closePopup()">閉じる</button>
+    <button class="pay-btn THONG現金" onclick="payConfirm('THONG現金')">
+        <img src="../img/Pay5.jpg" class="logo">
+        THONG現金 で支払う
+    </button>
+</div>
+
+<!-- =====================
+     POPUP XÁC NHẬN
+===================== -->
+<div id="confirm-popup" class="popup hidden">
+    <div class="popup-box">
+        <h3>お支払い確認</h3>
+        <p id="confirm-text"></p>
+
+        <div class="popup-actions">
+            <button class="ok-btn" onclick="confirmPay()">確認</button>
+            <button class="cancel-btn" onclick="closeConfirm()">キャンセル</button>
         </div>
     </div>
-    <script src="../js/Pay.js"></script>
+</div>
+
+<!-- =====================
+     POPUP THANK YOU
+===================== -->
+<div id="thankyou-popup" class="popup hidden">
+    <div class="popup-box">
+        <img id="thankyou-img" src="" alt="">
+        <p id="thankyou-text"></p>
+        <button class="close-btn" onclick="closePopup()">閉じる</button>
+    </div>
+</div>
+
+<script src="../js/Pay.js"></script>
 </body>
 </html>

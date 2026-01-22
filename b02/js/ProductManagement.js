@@ -1,18 +1,21 @@
-// USER PRODUCTS（localStorage: products）
+// ================== CONSTANT ==================
+const ITEMS_PER_PAGE = 5;
+let currentPage = 1;
 
-// Lấy danh sách sản phẩm user đã lưu
+// ================== USER PRODUCTS ==================
+// localStorage: products
+
 function getProducts() {
   return JSON.parse(localStorage.getItem("products") || "[]");
 }
 
-// Lưu danh sách sản phẩm user
 function saveProducts(products) {
   localStorage.setItem("products", JSON.stringify(products));
 }
 
-// DEFAULT PRODUCTS（localStorage: default_products hoặc file DefaultProducts.js）
+// ================== DEFAULT PRODUCTS ==================
+// localStorage: default_products / DefaultProducts.js
 
-// Lấy danh sách sản phẩm mặc định (đã sửa nếu có)
 function getDefaultProducts() {
   const saved = localStorage.getItem("default_products");
   if (saved) {
@@ -20,40 +23,43 @@ function getDefaultProducts() {
       return JSON.parse(saved);
     } catch (e) {}
   }
-  return DEFAULT_PRODUCTS;
+  return typeof DEFAULT_PRODUCTS !== "undefined" ? DEFAULT_PRODUCTS : [];
 }
 
-// Hiển thị danh sách sản phẩm vào bảng（innerHTML方式）
+// ================== RENDER PRODUCTS ==================
 function renderProducts(filterText = "") {
   const tbody = document.getElementById("productTableBody");
   if (!tbody) return;
 
   const defaultProducts = getDefaultProducts();
-  const userProducts    = getProducts();
-  const products        = [...defaultProducts, ...userProducts];
+  const userProducts = getProducts();
+  const allProducts = [...defaultProducts, ...userProducts];
 
   const keyword = filterText.trim().toLowerCase();
-  let rowsHtml = "";
 
-  products.forEach((p, index) => {
+  // 🔍 SEARCH FILTER
+  const filteredProducts = allProducts.filter(p => {
     const code = (p.code || "").toLowerCase();
     const name = (p.name || "").toLowerCase();
+    return !keyword || code.includes(keyword) || name.includes(keyword);
+  });
 
-    // 検索フィルター（コード or 商品名）
-    if (keyword && !code.includes(keyword) && !name.includes(keyword)) {
-      return;
-    }
+  // 📄 PAGINATION
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const pageItems = filteredProducts.slice(start, start + ITEMS_PER_PAGE);
 
-    // 画像があれば表示、なければ「なし」
+  let rowsHtml = "";
+
+  pageItems.forEach(p => {
+    const isDefault = defaultProducts.some(d => d.code === p.code);
+
     const imgHtml = p.img
       ? `<img src="${p.img}" class="product-img" alt="${p.name || ""}">`
       : "なし";
 
-    const isDefault = index < defaultProducts.length;
-
     const editButtonHtml = isDefault
       ? `<button class="edit-button" onclick="editDefault('${p.code}')">編集</button>`
-      : `<button class="edit-button" onclick="editUser(${index - defaultProducts.length})">編集</button>`;
+      : `<button class="edit-button" onclick="editUser(${userProducts.findIndex(u => u.code === p.code)})">編集</button>`;
 
     rowsHtml += `
       <tr>
@@ -67,30 +73,84 @@ function renderProducts(filterText = "") {
   });
 
   tbody.innerHTML = rowsHtml;
+
+  renderPagination(filteredProducts.length, filterText);
 }
 
-// 編集ボタン処理
-function editUser(userIndex) {
-  window.location.href = `./Addproduct.html?index=${userIndex}`;
+// ================== PAGINATION ==================
+function renderPagination(totalItems, filterText) {
+  const pagination = document.getElementById("pagination");
+  if (!pagination) return;
+
+  pagination.innerHTML = "";
+
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  if (totalPages <= 1) return;
+
+  // Prev
+  if (currentPage > 1) {
+    const prev = document.createElement("button");
+    prev.textContent = "«";
+    prev.className = "page-btn";
+    prev.onclick = () => {
+      currentPage--;
+      renderProducts(filterText);
+    };
+    pagination.appendChild(prev);
+  }
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = "page-btn";
+
+    if (i === currentPage) {
+      btn.classList.add("active");
+      btn.disabled = true;
+    }
+
+    btn.onclick = () => {
+      currentPage = i;
+      renderProducts(filterText);
+    };
+
+    pagination.appendChild(btn);
+  }
+
+  // Next
+  if (currentPage < totalPages) {
+    const next = document.createElement("button");
+    next.textContent = "»";
+    next.className = "page-btn";
+    next.onclick = () => {
+      currentPage++;
+      renderProducts(filterText);
+    };
+    pagination.appendChild(next);
+  }
+}
+
+// ================== EDIT ==================
+function editUser(index) {
+  window.location.href = `./Addproduct.html?index=${index}`;
 }
 
 function editDefault(code) {
   window.location.href = `./Addproduct.html?preset=${encodeURIComponent(code)}`;
 }
 
-
-// 検索ボックス設定
+// ================== SEARCH ==================
 function setupSearch() {
   const searchInput = document.getElementById("search");
   if (!searchInput) return;
 
   searchInput.addEventListener("input", function () {
+    currentPage = 1;
     renderProducts(this.value);
   });
 }
 
-// ページ読み込み時の初期化
-//Thiết lập ban đầu khi trang được tải
+// ================== INIT ==================
 document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   setupSearch();

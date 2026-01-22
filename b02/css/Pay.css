@@ -17,6 +17,44 @@ body {
     text-align: center;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
+.Back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 14px 24px;
+    font-size: 18px;          /* chữ to hơn */
+    font-weight: 700;
+
+    color: #333;
+    background: linear-gradient(135deg, #FFD54F, #FFB300);
+    border: none;
+    border-radius: 999px;
+
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    transition: all 0.2s ease;
+}
+
+.Back .icon {
+    font-size: 22px;          /* icon to hơn */
+    line-height: 1;
+}
+
+.Back:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+    filter: brightness(1.05);
+}
+
+.Back:active {
+    transform: scale(0.95);
+}
+
 
 .glass {
     background: rgba(255, 255, 255, 0.712);
@@ -134,4 +172,19 @@ body {
 @keyframes fadeIn {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+button.back {
+  background-color: #90a4ae;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+/* Hover */
+button.back:hover {
+  background-color: #78909c;
 }

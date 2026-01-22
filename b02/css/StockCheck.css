@@ -110,6 +110,38 @@
   margin-bottom: 20px;
   color: #2c3e50;
 }
+/* Pagination */
+.pagination {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.page-btn {
+  min-width: 36px;
+  height: 36px;
+  margin: 0 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+}
+
+.page-btn.active,
+.page-btn:disabled {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+  cursor: default;
+  font-weight: bold;
+}
 
 /* Nút trong body */
 .body button:hover {
@@ -118,7 +150,7 @@
 
 /* Bố cục phần hiển thị bảng */
 .Displaypage {
-  padding-top: 80px;
+  padding-top: 50px;
 }
 
 /* căn giữa tất cả trong bảng */
